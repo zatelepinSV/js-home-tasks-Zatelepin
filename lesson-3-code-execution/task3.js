@@ -9,6 +9,7 @@ do {
   }
 } while (isNaN(values) === false);
 
+/*
 function summa (argument) {
   var result = 0;
   for (var k = 0; k < argument.length; k++) {
@@ -18,3 +19,10 @@ function summa (argument) {
 }
 
 console.log(summa(valuesArray));
+*/
+
+var summ = valuesArray.reduce(function (result, item) {
+  return result + item;
+});
+
+console.log(summ);
