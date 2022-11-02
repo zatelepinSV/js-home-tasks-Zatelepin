@@ -14,7 +14,7 @@ function multiplyNumeric(argument) {
       copy[k] *= 2;
     }
   }
-  return copy
+  return copy;
 }
 
 console.log(multiplyNumeric(image));
