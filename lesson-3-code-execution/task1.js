@@ -19,4 +19,4 @@ function salarySearch(argument) {
   return meaning + ' ' + key;
 }
 
-console.log(salarySearch(tasksCompleted))
+console.log(salarySearch(tasksCompleted));
