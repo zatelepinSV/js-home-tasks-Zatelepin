@@ -1,5 +1,6 @@
 'use strict'
 
+/*
 var obj = {
   className: 'my menu menu menu menu my menu'
 };
@@ -18,20 +19,20 @@ function removeClass(objectName, word) {
 }
 removeClass(obj,'menu');
 console.log(obj);
+*/
 
 
-/* Version #2
+/* Version #2 (без мутации)
 var obj = {
   className: 'menu menu my menu menu menu my menu my menu menu'
 };
 var objNew;
 
 function removeClass(objectName, dellValue) {
-  var copy = Object.assign({}, objectName);
-  var brokeObj = copy.className.split(' ');
+  objNew = Object.assign({}, objectName);
+  var brokeObj = objNew.className.split(' ');
   brokeObj = brokeObj.filter(el => el !== dellValue);
-  copy.className = brokeObj.join(' ');
-  objNew = copy;
+  objNew.className = brokeObj.join(' ');
 
   return objNew;
 }
@@ -40,21 +41,22 @@ console.log(obj);
 console.log(objNew);
 */
 
-/* version #2.1
+/* version #2.1 - этот вариант не совсем подходит, т.к. удаляются ВСЕ одинаковые слова,
+если надо удалить все дублирования - то этот вариант прям то что надо)
+
 var obj = {
   name: 'menu menu my menu menu menu menu menu menu'
 };
 var objNew;
 
 function removeClass(objectName, dellValue) {
-  var copy = Object.assign({}, objectName);
-  var brokeObj = copy.name.split(' ');
+  objNew = Object.assign({}, objectName);
+  var brokeObj = objNew.name.split(' ');
   var newMassive = new Set(brokeObj);
   newMassive = Array.from(newMassive);
   var position = newMassive.indexOf(dellValue);
   newMassive.splice(position,1);
-  copy.name = newMassive.join(' ');
-  objNew = copy;
+  objNew.name = newMassive.join(' ');
 
   return objNew;
 }
@@ -62,4 +64,3 @@ removeClass(obj,'menu');
 console.log(obj);
 console.log(objNew);
 */
-
