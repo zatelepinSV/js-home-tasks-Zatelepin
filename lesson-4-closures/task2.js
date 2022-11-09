@@ -1,6 +1,5 @@
 'use strict'
 
-/*
 var obj = {
   className: 'my menu menu menu menu my menu'
 };
@@ -19,8 +18,6 @@ function removeClass(objectName, word) {
 }
 removeClass(obj,'menu');
 console.log(obj);
-*/
-
 
 /* Version #2 (без мутации)
 var obj = {
@@ -41,8 +38,35 @@ console.log(obj);
 console.log(objNew);
 */
 
-/* version #2.1 - этот вариант не совсем подходит, т.к. удаляются ВСЕ одинаковые слова,
-если надо удалить все дублирования - то этот вариант прям то что надо)
+/* Version #3 (без мутации)
+var obj = {
+  className: 'menu menu my menu menu menu my menu my menu menu',
+};
+var objNew;
+
+function removeClass(objectName, inputClasName) {
+
+  var objBroke = objectName.className.split(' ');
+  if (objBroke.includes(inputClasName) === true) {
+    objNew = Object.assign({}, objectName);
+    do {
+      var position = objBroke.indexOf(inputClasName);
+      objBroke.splice(position,1);
+    } while (objBroke.includes(inputClasName) === true);
+  } else {
+    console.log('input class not found');
+    obj.className = objBroke.join(' ');
+    return obj;
+  }
+  objNew.className = objBroke.join(' ');
+  return objNew;
+}
+
+console.log(removeClass(obj,'menu'));
+*/
+
+/* version #3.1 - этот вариант не совсем подходит, т.к. удаляются ВСЕ одинаковые слова,
+если надо удалить ВСЕ дублирования - то этот вариант прям то что надо)
 
 var obj = {
   name: 'menu menu my menu menu menu menu menu menu'
@@ -64,3 +88,4 @@ removeClass(obj,'menu');
 console.log(obj);
 console.log(objNew);
 */
+
