@@ -1,6 +1,6 @@
 'use strict'
 
-var obj = {
+/*var obj = {
   className: 'my menu menu menu menu my menu'
 };
 
@@ -17,7 +17,7 @@ function removeClass(objectName, word) {
   return obj;
 }
 removeClass(obj,'menu');
-console.log(obj);
+console.log(obj);*/
 
 /* Version #2 (без мутации)
 var obj = {
@@ -69,23 +69,47 @@ console.log(removeClass(obj,'menu'));
 если надо удалить ВСЕ дублирования - то этот вариант прям то что надо)
 
 var obj = {
-  name: 'menu menu my menu menu menu menu menu menu'
+  className: 'menu menu my menu menu menu menu menu menu'
 };
 var objNew;
 
 function removeClass(objectName, dellValue) {
   objNew = Object.assign({}, objectName);
-  var brokeObj = objNew.name.split(' ');
+  var brokeObj = objNew.className.split(' ');
   var newMassive = new Set(brokeObj);
   newMassive = Array.from(newMassive);
   var position = newMassive.indexOf(dellValue);
   newMassive.splice(position,1);
-  objNew.name = newMassive.join(' ');
+  objNew.className = newMassive.join(' ');
 
   return objNew;
 }
 removeClass(obj,'menu');
 console.log(obj);
 console.log(objNew);
+*/
+
+
+/* Version #4
+var obj = {
+  className: 'menu menu my menu menu menu my menu menu my menu'
+};
+var objNewM;
+
+function removeClass(objectName, dellValue) {
+  objNewM = Object.assign({}, objectName);
+  var objNew = objNewM.className.split(' ');
+  objNew.forEach(function(item, i) {
+    if (item === dellValue) {
+      delete objNew[i];
+    }
+  });
+  objNew = objNew.filter(Boolean);
+  objNewM.className = objNew.join(' ');
+  return objNewM;
+}
+removeClass(obj,'menu');
+console.log(obj);
+console.log(objNewM);
 */
 
