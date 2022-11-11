@@ -1,6 +1,7 @@
 'use strict'
 
-/*var obj = {
+
+var obj = {
   className: 'my menu menu menu menu my menu'
 };
 
@@ -17,7 +18,8 @@ function removeClass(objectName, word) {
   return obj;
 }
 removeClass(obj,'menu');
-console.log(obj);*/
+console.log(obj);
+
 
 /* Version #2 (без мутации)
 var obj = {
@@ -94,22 +96,22 @@ console.log(objNew);
 var obj = {
   className: 'menu menu my menu menu menu my menu menu my menu'
 };
-var objNewM;
+var objNewCopy;
 
 function removeClass(objectName, dellValue) {
-  objNewM = Object.assign({}, objectName);
-  var objNew = objNewM.className.split(' ');
+  objNewCopy = Object.assign({}, objectName);
+  var objNew = objNewCopy.className.split(' ');
   objNew.forEach(function(item, i) {
     if (item === dellValue) {
       delete objNew[i];
     }
   });
   objNew = objNew.filter(Boolean);
-  objNewM.className = objNew.join(' ');
-  return objNewM;
+  objNewCopy.className = objNew.join(' ');
+  return objNewCopy;
 }
 removeClass(obj,'menu');
 console.log(obj);
-console.log(objNewM);
+console.log(objNewCopy);
 */
 
