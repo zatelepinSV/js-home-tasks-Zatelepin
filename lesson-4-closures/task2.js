@@ -1,6 +1,5 @@
 'use strict'
 
-
 var obj = {
   className: 'my menu menu menu menu my menu'
 };
@@ -9,7 +8,6 @@ function removeClass(objectName, word) {
   var massiv = objectName.className.split(' ');
   for (var k = 0; k < massiv.length; k++) {
     if (massiv[k] === word) {
-      console.log(massiv[k] + ' покинул чат');
       massiv.splice(k, 1);
       k--;
     }
@@ -17,9 +15,8 @@ function removeClass(objectName, word) {
   obj.className = massiv.join(' ');
   return obj;
 }
-removeClass(obj,'menu');
+removeClass(obj,'blabla');
 console.log(obj);
-
 
 /* Version #2 (без мутации)
 var obj = {
@@ -49,14 +46,14 @@ var objNew;
 function removeClass(objectName, inputClasName) {
 
   var objBroke = objectName.className.split(' ');
-  if (objBroke.includes(inputClasName) === true) {
+  if (objBroke.includes(inputClasName)) {
     objNew = Object.assign({}, objectName);
     do {
       var position = objBroke.indexOf(inputClasName);
       objBroke.splice(position,1);
-    } while (objBroke.includes(inputClasName) === true);
+    } while (objBroke.includes(inputClasName));
   } else {
-    console.log('input class not found');
+    objNew = null;
     obj.className = objBroke.join(' ');
     return obj;
   }
@@ -91,7 +88,6 @@ console.log(obj);
 console.log(objNew);
 */
 
-
 /* Version #4
 var obj = {
   className: 'menu menu my menu menu menu my menu menu my menu'
@@ -115,3 +111,31 @@ console.log(obj);
 console.log(objNewCopy);
 */
 
+/* Version #5
+var obj = {
+  className: 'menu menu my menu my menu my menu'
+};
+var objNew;
+
+removeClass(obj, 'blabla');
+
+function removeClass(objectName, dellValue) {
+  var newMass = [];
+  objNew = Object.assign({}, objectName);
+  var brokeObj = objNew.className.split(' ');
+  if (brokeObj.includes(dellValue)) {
+    brokeObj.forEach((elm) => {
+      if (brokeObj.includes(elm) && elm !== dellValue) {
+        newMass.push(elm);
+        objNew.className = newMass.join(' ');
+      }
+    });
+  } else {
+    objNew = null;
+    return objectName;
+  }
+  return objNew;
+}
+console.log(objNew);
+console.log(obj);
+*/
