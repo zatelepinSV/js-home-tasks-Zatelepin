@@ -53,7 +53,6 @@ function removeClassNameFromString(objectName, inputClasName) {
       objBroke.splice(position,1);
     } while (objBroke.includes(inputClasName));
   } else {
-    objNew = null;
     obj.className = objBroke.join(' ');
     return obj;
   }
@@ -131,7 +130,6 @@ function removeClassNameFromString(objectName, dellValue) {
       }
     });
   } else {
-    objNew = null;
     return objectName;
   }
   return objNew;
