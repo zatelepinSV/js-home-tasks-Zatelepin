@@ -4,7 +4,7 @@ var obj = {
   className: 'my menu menu menu menu my menu'
 };
 
-function removeClass(objectName, word) {
+function removeClassNameFromString(objectName, word) {
   var massiv = objectName.className.split(' ');
   for (var k = 0; k < massiv.length; k++) {
     if (massiv[k] === word) {
@@ -15,7 +15,7 @@ function removeClass(objectName, word) {
   obj.className = massiv.join(' ');
   return obj;
 }
-removeClass(obj,'blabla');
+removeClassNameFromString(obj,'blabla');
 console.log(obj);
 
 /* Version #2 (без мутации)
@@ -24,7 +24,7 @@ var obj = {
 };
 var objNew;
 
-function removeClass(objectName, dellValue) {
+function removeClassNameFromString(objectName, dellValue) {
   objNew = Object.assign({}, objectName);
   var brokeObj = objNew.className.split(' ');
   brokeObj = brokeObj.filter(el => el !== dellValue);
@@ -32,7 +32,7 @@ function removeClass(objectName, dellValue) {
 
   return objNew;
 }
-removeClass(obj,'menu');
+removeClassNameFromString(obj,'menu');
 console.log(obj);
 console.log(objNew);
 */
@@ -43,7 +43,7 @@ var obj = {
 };
 var objNew;
 
-function removeClass(objectName, inputClasName) {
+function removeClassNameFromString(objectName, inputClasName) {
 
   var objBroke = objectName.className.split(' ');
   if (objBroke.includes(inputClasName)) {
@@ -61,7 +61,7 @@ function removeClass(objectName, inputClasName) {
   return objNew;
 }
 
-console.log(removeClass(obj,'menu'));
+console.log(removeClassNameFromString(obj,'menu'));
 */
 
 /* version #3.1 - этот вариант не совсем подходит, т.к. удаляются ВСЕ одинаковые слова,
@@ -72,7 +72,7 @@ var obj = {
 };
 var objNew;
 
-function removeClass(objectName, dellValue) {
+function removeClassNameFromString(objectName, dellValue) {
   objNew = Object.assign({}, objectName);
   var brokeObj = objNew.className.split(' ');
   var newMassive = new Set(brokeObj);
@@ -83,7 +83,7 @@ function removeClass(objectName, dellValue) {
 
   return objNew;
 }
-removeClass(obj,'menu');
+removeClassNameFromString(obj,'menu');
 console.log(obj);
 console.log(objNew);
 */
@@ -94,7 +94,7 @@ var obj = {
 };
 var objNewCopy;
 
-function removeClass(objectName, dellValue) {
+function removeClassNameFromString(objectName, dellValue) {
   objNewCopy = Object.assign({}, objectName);
   var objNew = objNewCopy.className.split(' ');
   objNew.forEach(function(item, i) {
@@ -106,7 +106,7 @@ function removeClass(objectName, dellValue) {
   objNewCopy.className = objNew.join(' ');
   return objNewCopy;
 }
-removeClass(obj,'menu');
+removeClassNameFromString(obj,'menu');
 console.log(obj);
 console.log(objNewCopy);
 */
@@ -117,9 +117,9 @@ var obj = {
 };
 var objNew;
 
-removeClass(obj, 'blabla');
+removeClassNameFromString(obj, 'blabla');
 
-function removeClass(objectName, dellValue) {
+function removeClassNameFromString(objectName, dellValue) {
   var newMass = [];
   objNew = Object.assign({}, objectName);
   var brokeObj = objNew.className.split(' ');
