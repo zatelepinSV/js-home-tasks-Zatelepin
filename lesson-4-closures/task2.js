@@ -1,63 +1,65 @@
 'use strict'
 
+
 var obj = {
   className: 'my menu menu menu menu my menu'
 };
 
-function removeClassNameFromString(objectName, word) {
-  var massiv = objectName.className.split(' ');
-  for (var k = 0; k < massiv.length; k++) {
-    if (massiv[k] === word) {
-      massiv.splice(k, 1);
+function removeClassNameFromString(object, word) {
+  var array = object.className.split(' ');
+  for (var k = 0; k < array.length; k++) {
+    if (array[k] === word) {
+      array.splice(k, 1);
       k--;
     }
   }
-  obj.className = massiv.join(' ');
+  obj.className = array.join(' ');
   return obj;
 }
-removeClassNameFromString(obj,'blabla');
+removeClassNameFromString(obj,'menu');
 console.log(obj);
 
 /* Version #2 (без мутации)
 var obj = {
   className: 'menu menu my menu menu menu my menu my menu menu'
 };
-var objNew;
+var objCopy;
 
-function removeClassNameFromString(objectName, dellValue) {
-  objNew = Object.assign({}, objectName);
-  var brokeObj = objNew.className.split(' ');
-  brokeObj = brokeObj.filter(el => el !== dellValue);
-  objNew.className = brokeObj.join(' ');
+function removeClassNameFromString(object, dellValue) {
+  objCopy = Object.assign({}, object);
+  var stringToArray = objCopy.className.split(' ');
+  stringToArray = stringToArray.filter(el => el !== dellValue);
+  objCopy.className = stringToArray.join(' ');
 
-  return objNew;
+  return objCopy;
 }
 removeClassNameFromString(obj,'menu');
 console.log(obj);
-console.log(objNew);
+console.log(objCopy);
 */
 
 /* Version #3 (без мутации)
 var obj = {
   className: 'menu menu my menu menu menu my menu my menu menu',
 };
-var objNew;
+var objCopy;
 
-function removeClassNameFromString(objectName, inputClasName) {
+function removeClassNameFromString(object, inputClasName) {
 
-  var objBroke = objectName.className.split(' ');
-  if (objBroke.includes(inputClasName)) {
-    objNew = Object.assign({}, objectName);
+  var strToArr = object.className.split(' ');
+  if (strToArr.includes(inputClasName)) {
+    objCopy = Object.assign({}, object);
     do {
-      var position = objBroke.indexOf(inputClasName);
-      objBroke.splice(position,1);
-    } while (objBroke.includes(inputClasName));
+      var position = strToArr.indexOf(inputClasName);
+      strToArr.splice(position,1);
+    } while (strToArr.includes(inputClasName));
   } else {
-    obj.className = objBroke.join(' ');
+    objCopy = null;
+    obj.className = strToArr.join(' ');
     return obj;
   }
-  objNew.className = objBroke.join(' ');
-  return objNew;
+  objCopy.className = strToArr.join(' ');
+  return objCopy;
 }
 
 console.log(removeClassNameFromString(obj,'menu'));
@@ -69,71 +71,72 @@ console.log(removeClassNameFromString(obj,'menu'));
 var obj = {
   className: 'menu menu my menu menu menu menu menu menu'
 };
-var objNew;
+var objCopy;
 
-function removeClassNameFromString(objectName, dellValue) {
-  objNew = Object.assign({}, objectName);
-  var brokeObj = objNew.className.split(' ');
-  var newMassive = new Set(brokeObj);
-  newMassive = Array.from(newMassive);
-  var position = newMassive.indexOf(dellValue);
-  newMassive.splice(position,1);
-  objNew.className = newMassive.join(' ');
+function removeClassNameFromString(object, dellValue) {
+  objCopy = Object.assign({}, object);
+  var objValToArray = objCopy.className.split(' ');
+  var newArray = new Set(objValToArray);
+  newArray = Array.from(newArray);
+  var position = newArray.indexOf(dellValue);
+  newArray.splice(position,1);
+  objCopy.className = newArray.join(' ');
 
-  return objNew;
+  return objCopy;
 }
 removeClassNameFromString(obj,'menu');
 console.log(obj);
-console.log(objNew);
+console.log(objCopy);
 */
 
 /* Version #4
 var obj = {
   className: 'menu menu my menu menu menu my menu menu my menu'
 };
-var objNewCopy;
+var objCopy;
 
 function removeClassNameFromString(objectName, dellValue) {
-  objNewCopy = Object.assign({}, objectName);
-  var objNew = objNewCopy.className.split(' ');
-  objNew.forEach(function(item, i) {
+  objCopy = Object.assign({}, objectName);
+  var newArray = objCopy.className.split(' ');
+  newArray.forEach(function(item, i) {
     if (item === dellValue) {
-      delete objNew[i];
+      delete newArray[i];
     }
   });
-  objNew = objNew.filter(Boolean);
-  objNewCopy.className = objNew.join(' ');
-  return objNewCopy;
+  newArray = newArray.filter(Boolean);
+  objCopy.className = newArray.join(' ');
+  return objCopy;
 }
 removeClassNameFromString(obj,'menu');
 console.log(obj);
-console.log(objNewCopy);
+console.log(objCopy);
 */
 
 /* Version #5
 var obj = {
   className: 'menu menu my menu my menu my menu'
 };
-var objNew;
+var objCopy;
 
-removeClassNameFromString(obj, 'blabla');
+removeClassNameFromString(obj, 'menu');
 
-function removeClassNameFromString(objectName, dellValue) {
-  var newMass = [];
-  objNew = Object.assign({}, objectName);
-  var brokeObj = objNew.className.split(' ');
-  if (brokeObj.includes(dellValue)) {
-    brokeObj.forEach((elm) => {
-      if (brokeObj.includes(elm) && elm !== dellValue) {
-        newMass.push(elm);
-        objNew.className = newMass.join(' ');
+function removeClassNameFromString(object, dellValue) {
+  var newArr = [];
+  objCopy = Object.assign({}, object);
+  var objValueToArr = objCopy.className.split(' ');
+  if (objValueToArr.includes(dellValue)) {
+    objValueToArr.forEach((elm) => {
+      if (objValueToArr.includes(elm) && elm !== dellValue) {
+        newArr.push(elm);
+        objCopy.className = newArr.join(' ');
       }
     });
   } else {
-    return objectName;
+    objCopy = null;
+    return obj;
   }
-  return objNew;
+  return objCopy;
 }
-console.log(objNew);
+console.log(objCopy);
 console.log(obj);
 */
