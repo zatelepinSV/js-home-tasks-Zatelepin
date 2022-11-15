@@ -69,9 +69,9 @@ john.pays(john.prices);
 mark.pays(mark.prices);
 
 if (average(john.johnsTips) > average(mark.marksTips)) {
-  console.log('Марк просадил больше');
-} else {
   console.log('Джон просадил больше');
+} else {
+  console.log('Марк просадил больше');
 }
 
 /* Version #2
