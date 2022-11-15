@@ -55,16 +55,17 @@ var mark = {
   },
 };
 
-function average (arg) {
+function average (arrayToAverage) {
   var average;
   var result = 0;
-  for (var k = 0; k < arg.length; k++) {
-    result = arg[k] + result;
+  for (var k = 0; k < arrayToAverage.length; k++) {
+    result += arrayToAverage[k];
     average = k;
   }
   result /= (average + 1);
-  return result;
+  return result.toFixed(2);
 }
+
 john.pays(john.prices);
 mark.pays(mark.prices);
 
@@ -106,7 +107,7 @@ var john = {
     var average;
     var result = 0;
     for (var k = 0; k < this.johnsTips.length; k++) {
-      result = arg[k] + result;
+      result += arg[k];
       average = k;
     }
     result /= (average + 1);
@@ -145,7 +146,7 @@ var mark = {
     var average;
     var result = 0;
     for (var k = 0; k < this.marksTips.length; k++) {
-      result = arg[k] + result;
+      result += arg[k];
       average = k;
     }
     result /= (average + 1);
