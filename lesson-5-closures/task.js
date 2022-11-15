@@ -25,7 +25,6 @@ var john = {
         this.johnsBillPlusTips.push(billAndTips);
       }
     }
-    return this.johnsTips;
   },
   average: function (arg) {
     john.pays(john.prices);
@@ -65,7 +64,6 @@ var mark = {
         this.marksBillPlusTips.push(billAndTips);
       }
     }
-    return this.marksTips;
   },
   average: function (arg) {
     mark.pays(mark.prices);
@@ -81,9 +79,7 @@ var mark = {
 };
 
 if (mark.average(mark.marksTips) > john.average(john.johnsTips)) {
-  console.log(`Марк просадил больше ${mark.average(mark.marksTips)}`);
+  console.log('Марк просадил больше ' + mark.average(mark.marksTips));
 } else {
-  console.log(`Джон просадил больше ${john.average(john.johnsTips)}`);
+  console.log('Джон просадил больше ' + john.average(john.johnsTips));
 }
-console.log(john.average(john.johnsTips));
-console.log(mark.average(mark.marksTips));
