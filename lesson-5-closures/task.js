@@ -1,5 +1,6 @@
 'use strict'
 
+
 var john = {
   prices: [124, 48, 268, 180, 42],
   johnsTips: [],
@@ -101,9 +102,9 @@ var john = {
         this.johnsBillPlusTips.push(billAndTips);
       }
     }
+    return this.average(this.johnsTips);
   },
   average: function (arg) {
-    john.pays(john.prices);
     var average;
     var result = 0;
     for (var k = 0; k < this.johnsTips.length; k++) {
@@ -140,9 +141,9 @@ var mark = {
         this.marksBillPlusTips.push(billAndTips);
       }
     }
+    return this.average(this.marksTips);
   },
   average: function (arg) {
-    mark.pays(mark.prices);
     var average;
     var result = 0;
     for (var k = 0; k < this.marksTips.length; k++) {
@@ -154,9 +155,11 @@ var mark = {
   },
 };
 
-if (mark.average(mark.marksTips) > john.average(john.johnsTips)) {
+if (mark.pays(mark.prices) > john.pays(john.prices)) {
   console.log('Марк просадил больше ');
 } else {
   console.log('Джон просадил больше ');
 }
+console.log(john);
+console.log(mark);
 */
