@@ -40,8 +40,8 @@
 
   function total() {
 
-    return function (ansTrue) {
-      if (ansTrue === 'trueAns') {
+    return function (ansQuest) {
+      if (ansQuest === 'trueAns') {
         points++;
       }
       return points;
@@ -79,18 +79,22 @@
     }
   }
 
-  Question.prototype.checkAnswer = function (ans) {
+  Question.prototype.checkAnswer = function (ans, func) {
 
     if (parseInt(ans) === this.correct) {
       console.log('Correct answer!');
-      points++;
-      console.log('Ваши баллы ' + points);
+      points = func('nice');
     } else if (ans === 'exit') {
-      console.log('Bye - bye ' + 'Вы набрали ' + points);
+      console.log('Bye-bye');
     } else {
       console.log('Wrong answer. Try again :)');
-      console.log('Ваши баллы ' + points);
+      points = func('notNice');
     }
+    return this.showPoints(points);
+  }
+
+  Question.prototype.showPoints = function (arg) {
+    console.log('Points: ' + arg);
   }
 
   var q1 = new Question('Is JavaScript the coolest programming language in the world?',
@@ -106,13 +110,21 @@
     2);
 
   var points = 0;
+  function total() {
+    return function (ansQuest) {
+      if (ansQuest === 'nice') {
+        points++;
+      }
+      return points;
+    }
+  }
 
   do {
     var questions = [q1, q2, q3];
     var n = Math.floor(Math.random() * questions.length);
     questions[n].displayQuestion();
     var answer = prompt('Please select the correct answer.');
-    questions[n].checkAnswer(answer);
+    questions[n].checkAnswer(answer,total());
   } while (answer !== 'exit');
 
 })();*/
