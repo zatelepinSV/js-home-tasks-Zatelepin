@@ -1,20 +1,20 @@
 'use strict';
 
-(function() {
+(function () {
   function Question(question, answers, correct) {
     this.question = question;
     this.answers = answers;
     this.correct = correct;
   }
 
-  Question.prototype.displayQuestion = function() {
+  Question.prototype.displayQuestion = function () {
     console.log(this.question);
     for (var i = 0; i < this.answers.length; i++) {
       console.log(i + ': ' + this.answers[i]);
     }
   }
 
-  Question.prototype.checkAnswer = function(ans, arg) {
+  Question.prototype.checkAnswer = function (ans, arg) {
     if (ans === this.correct) {
       console.log('Correct answer!');
       points = arg('trueAns');
@@ -47,6 +47,7 @@
       return points;
     }
   }
+
   var points = 0;
   var questions = [q1, q2, q3];
 
@@ -54,11 +55,12 @@
     var n = Math.floor(Math.random() * questions.length);
     questions[n].displayQuestion();
     var answer = prompt('Please select the correct answer.');
-    if (answer !== 'exit') {
+    if (answer.toLowerCase() !== 'exit') {
       questions[n].checkAnswer(parseInt(answer), total());
       repeat();
     }
   }
+
   repeat();
 
 })();
@@ -110,6 +112,7 @@
     2);
 
   var points = 0;
+  var questions = [q1, q2, q3];
   function total() {
     return function (ansQuest) {
       if (ansQuest === 'nice') {
@@ -118,13 +121,12 @@
       return points;
     }
   }
-
+  var finalCountdown = total();
   do {
-    var questions = [q1, q2, q3];
     var n = Math.floor(Math.random() * questions.length);
     questions[n].displayQuestion();
     var answer = prompt('Please select the correct answer.');
-    questions[n].checkAnswer(answer,total());
-  } while (answer !== 'exit');
+    questions[n].checkAnswer(answer, finalCountdown);
+  } while (answer.toLowerCase() !== 'exit');
 
 })();*/
