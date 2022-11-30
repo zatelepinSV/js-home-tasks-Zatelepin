@@ -2,15 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Task</title>
     <link rel="stylesheet" href="task.css">
     <script src="task.js"></script>
   </head>
   <body>
-    <button id="btn1" class="btn">Добавить напиток</button>
-    <button id="btn2" class="btn">Показать все напитки</button>
-    <button id="btn3" class="btn">Состав напитка</button>
-    <button id="btn4" class="btn">Удалить напиток</button>
+    <a href="#" role="button" id="btn1" class="shine-button">Добавить напиток</a>
+    <a href="#" role="button" id="btn2" class="shine-button">Показать все напитки</a>
+    <a href="#" role="button" id="btn3" class="shine-button">Состав напитка</a>
+    <a href="#" role="button" id="btn4" class="shine-button">Удалить напиток</a>
     <div class="info"></div>
     <script>
       'use strict';
@@ -26,7 +26,7 @@
         document.querySelector('.info').innerHTML = 'Напитки: ' + '<b>' + drinkStorage.getValue() + '</b>';
       });
       document.getElementById('btn4').addEventListener("click", function () {
-        var dellKey = prompt('что удалить?');
+        var dellKey = prompt('Что удалить?');
         drinkStorage.deleteValue(dellKey);
         document.querySelector('.info').innerHTML = 'Напитки: ' + '<b>' + drinkStorage.getValue() + '</b>';
       });
