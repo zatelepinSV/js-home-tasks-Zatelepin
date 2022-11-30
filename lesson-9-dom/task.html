@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="task.css">
+    <script src="task.js"></script>
+  </head>
+  <body>
+    <button id="btn1" class="btn">Добавить напиток</button>
+    <button id="btn2" class="btn">Показать все напитки</button>
+    <button id="btn3" class="btn">Состав напитка</button>
+    <button id="btn4" class="btn">Удалить напиток</button>
+    <div class="info"></div>
+    <script>
+      'use strict';
+      var drinkStorage = new THashStorage();
+
+      document.getElementById('btn1').addEventListener('click', function () {
+        var name = prompt('Введите название');
+        var alcoholic = prompt('Алкогольный?');
+        var compound = prompt('Что входит в состав?');
+        drinkStorage.addValue(name, [name, alcoholic, compound]);
+      });
+      document.getElementById('btn2').addEventListener("click", function () {
+        document.querySelector('.info').innerHTML = 'Напитки: ' + '<b>' + drinkStorage.getValue() + '</b>';
+      });
+      document.getElementById('btn4').addEventListener("click", function () {
+        var dellKey = prompt('что удалить?');
+        drinkStorage.deleteValue(dellKey);
+        document.querySelector('.info').innerHTML = 'Напитки: ' + '<b>' + drinkStorage.getValue() + '</b>';
+      });
+      document.getElementById('btn3').addEventListener("click", function () {
+        var thisDrink = prompt('Конкретный напиток');
+        document.querySelector('.info').innerHTML = drinkStorage.getKeys(thisDrink);
+      });
+
+    </script>
+  </body>
+</html>
