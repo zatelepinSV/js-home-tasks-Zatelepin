@@ -8,15 +8,15 @@ function THashStorage() {
     allDrinks[key] = value;
   }
 
-  this.getValue = function () {
+  this.getKeys = function () {
     return Object.keys(allDrinks);
   }
 
-  this.getKeys = function (key) {
+  this.getValue = function (key) {
     return allDrinks[key];
   }
 
-  this.deleteValue = function (key) {
+  this.deleteKey = function (key) {
     delete allDrinks[key];
   }
 
