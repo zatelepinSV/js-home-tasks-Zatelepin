@@ -18,23 +18,43 @@
 
       document.getElementById('btn1').addEventListener('click', function () {
         var name = prompt('Введите название');
-        var alcoholic = prompt('Алкогольный?');
-        var compound = prompt('Что входит в состав?');
-        drinkStorage.addValue(name, [name, alcoholic, compound]);
+        if (drinkStorage.check(name) === true) {
+          alert('Уже такой есть');
+        } else {
+          var alcoholic = prompt('Алкогольный?');
+          var compound = prompt('Что входит в состав?');
+          drinkStorage.addValue(name, [name, alcoholic, compound]);
+          alert(name + ' Успешно добавлен');
+        }
       });
       document.getElementById('btn2').addEventListener("click", function () {
         document.querySelector('.info').innerHTML = 'Напитки: ' + '<b>' + drinkStorage.getValue() + '</b>';
       });
-      document.getElementById('btn4').addEventListener("click", function () {
-        var dellKey = prompt('Что удалить?');
-        drinkStorage.deleteValue(dellKey);
-        document.querySelector('.info').innerHTML = 'Напитки: ' + '<b>' + drinkStorage.getValue() + '</b>';
-      });
       document.getElementById('btn3').addEventListener("click", function () {
         var thisDrink = prompt('Конкретный напиток');
-        document.querySelector('.info').innerHTML = drinkStorage.getKeys(thisDrink);
+        if (drinkStorage.check(thisDrink) === true) {
+          document.querySelector('.info').innerHTML = infoDrink(drinkStorage.getKeys(thisDrink));
+        } else {
+          alert('такого нет');
+          document.querySelector('.info').innerHTML = 'Напитки: ' + '<b>' + drinkStorage.getValue().toString() + '</b>';
+        }
+      });
+      document.getElementById('btn4').addEventListener("click", function () {
+        var dellKey = prompt('что удалить?');
+        if (drinkStorage.check(dellKey) === true) {
+          drinkStorage.deleteValue(dellKey);
+          alert('напиток ' + dellKey + ' успешно удалён!');
+        } else {
+          alert('такого напитка нет!!!');
+        }
+        document.querySelector('.info').innerHTML = 'Напитки: ' + '<b>' + drinkStorage.getValue() + '</b>';
       });
 
+      function infoDrink(arg) {
+        return 'Напиток: ' + '<b>' + arg[0] + '</b><br>' +
+          'Алкогольный: ' + '<b>' + arg[1] + '</b><br>' +
+          'Состав: ' + '<b>' + arg[2] + '</b>';
+      }
     </script>
   </body>
 </html>
