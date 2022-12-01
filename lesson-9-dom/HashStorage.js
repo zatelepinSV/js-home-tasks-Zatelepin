@@ -2,26 +2,26 @@
 
 
 function THashStorage() {
-  var allDrinks = {};
+  var storage = {};
 
   this.addValue = function (key, value) {
-    allDrinks[key] = value;
-  }
-
-  this.getKeys = function () {
-    return Object.keys(allDrinks);
+    storage[key] = value;
   }
 
   this.getValue = function (key) {
-    return allDrinks[key];
+    return storage[key];
   }
 
   this.deleteKey = function (key) {
-    delete allDrinks[key];
+    delete storage[key];
+  }
+
+  this.getKeys = function () {
+    return Object.keys(storage);
   }
 
   this.check = function (arg) {
-    if (Object.keys(allDrinks).includes(arg)) {
+    if (Object.keys(storage).includes(arg)) {
       return true;
     }
   }
