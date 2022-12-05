@@ -32,26 +32,26 @@
 
     function creatorForms(input) {
       for (var k = 0; k < input.length; k++) {
-        var obj = input[k];
+        var elements = input[k];
         var id = k + 1;
-        switch (obj.type) {
+        switch (elements.type) {
           case 'text':
-            cloneForm.appendChild(formTypeText(obj, id));
+            cloneForm.appendChild(formTypeText(elements, id));
             break;
           case 'select':
-            cloneForm.appendChild(formTypeSelect(obj, id));
+            cloneForm.appendChild(formTypeSelect(elements, id));
             break;
           case 'radio':
-            cloneForm.appendChild(formTypeRadio(obj, id));
+            cloneForm.appendChild(formTypeRadio(elements, id));
             break;
           case 'checkbox':
-            cloneForm.appendChild(formCheckbox(obj, id));
+            cloneForm.appendChild(formCheckbox(elements, id));
             break;
           case 'textarea':
-            cloneForm.appendChild(formTextarea(obj, id))
+            cloneForm.appendChild(formTextarea(elements, id))
             break;
           case 'submit':
-            cloneForm.appendChild(formButton(obj, id));
+            cloneForm.appendChild(formButton(elements, id));
             break;
         }
       }
@@ -120,12 +120,17 @@
 
   function formTextarea(obj, id) {
     var lblName = obj.label;
-    var type = obj.type;
     var name = obj.name;
     var forms = document.createElement('div');
     forms.appendChild(createLabel(lblName, id));
-    forms.appendChild(createInput(type, name, id)).setAttribute(
+    forms.appendChild(createInputTxt(name, id)).setAttribute(
       'style', 'display: block; height: 200px; width: 300px');
+    function createInputTxt(name, id) {
+      var inputFrm = document.createElement("textarea");
+      inputFrm.name = name;
+      inputFrm.id = id;
+      return inputFrm;
+    }
     return forms;
   }
 
