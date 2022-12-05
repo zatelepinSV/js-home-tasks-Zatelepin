@@ -26,13 +26,13 @@
 
   create(contBody, origForm, obj);
 
-  function create(contBody, origForm, obj) {
+  function create(container, origForm, obj) {
     var cloneForm = origForm.cloneNode(false);
     creatorForms(obj);
 
-    function creatorForms(arg) {
-      for (var k = 0; k < arg.length; k++) {
-        var obj = arg[k];
+    function creatorForms(input) {
+      for (var k = 0; k < input.length; k++) {
+        var obj = input[k];
         var id = k + 1;
         switch (obj.type) {
           case 'text':
@@ -57,7 +57,7 @@
       }
     }
 
-    contBody.replaceChild(cloneForm, origForm);
+    container.replaceChild(cloneForm, origForm);
   }
 
   function formTypeText(obj, id) {
