@@ -56,8 +56,8 @@
         }
       }
     }
-
-    container.replaceChild(cloneForm, origForm);
+    container.appendChild(cloneForm);
+    /*container.replaceChild(cloneForm, origForm);*/
   }
 
   function formTypeText(obj, id) {
