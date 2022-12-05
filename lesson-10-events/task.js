@@ -64,7 +64,7 @@
     var lblName = obj.label;
     var type = obj.type;
     var name = obj.name;
-    var forms = document.createElement('form');
+    var forms = document.createElement('div');
 
     forms.appendChild(createLabel(lblName, id));
     forms.appendChild(createInput(type, name, id));
@@ -75,7 +75,7 @@
     var lblName = obj.label;
     var name = obj.name;
     var select = obj.selection;
-    var forms = document.createElement('form');
+    var forms = document.createElement('div');
     forms.appendChild(createLabel(lblName, id));
     forms.appendChild(createInputOptions(name, id, select)).value = select[2];
 
@@ -99,7 +99,7 @@
     var type = obj.type;
     var name = obj.name;
     var selection = obj.selection;
-    var forms = document.createElement('form');
+    var forms = document.createElement('div');
     forms.appendChild(createLabel(lblName, id));
 
     for (var k = 0; k < selection.length; k++) {
@@ -113,7 +113,7 @@
     var lblName = obj.label;
     var type = obj.type;
     var name = obj.name;
-    var forms = document.createElement('form');
+    var forms = document.createElement('div');
     forms.appendChild(createLabel(lblName, id));
     forms.appendChild(createInput(type, name, id)).checked = true;
     return forms;
@@ -123,7 +123,7 @@
     var lblName = obj.label;
     var type = obj.type;
     var name = obj.name;
-    var forms = document.createElement('form');
+    var forms = document.createElement('div');
     forms.appendChild(createLabel(lblName, id));
     forms.appendChild(createInput(type, name, id)).setAttribute(
       'style', 'display: block; height: 200px; width: 300px');
@@ -134,7 +134,7 @@
     var value = obj.label;
     var type = obj.type;
     var name = obj.name;
-    var forms = document.createElement('form');
+    var forms = document.createElement('div');
     forms.appendChild(createInputButton(type, name, id, value));
 
     function createInputButton(type, name, idd, value) {
