@@ -1,5 +1,5 @@
 body {
-    box-sizing:border-box;
+    box-sizing: border-box;
     padding: 0;
     margin: 0;
     height: 100vh;
@@ -7,7 +7,6 @@ body {
     justify-content: center;
     align-items: center;
     background: #000;
-
 }
 
 #wrapper {
@@ -34,9 +33,11 @@ body {
 #arrMin:before {
     background-color: #B77DD4;
 }
+
 #arrH:before {
     background-color: #B77DD4;
 }
+
 .number {
     display: flex;
     justify-content: center;

@@ -15,43 +15,43 @@ createArrowSeconds(arrows);
 createArrowMinutes(arrows);
 createArrowHour(arrows);
 createCenterCircle(arrows);
-createTimeCifr(dgtlClock);
-setInterval(time,1000);
+createTimeDigital(dgtlClock);
+setInterval(time, 1000);
 
 var arrowSeconds = document.getElementById('arrSec');
 var ArrowMinutes = document.getElementById('arrMin');
 var arrowHours = document.getElementById('arrH');
 var timeDigital = document.getElementById('digitalTime');
 
-function create(arg) {
+function create(container) {
   var numberWrapper = document.createElement('div');
   numberWrapper.id = 'numberWrapper';
-  arg.appendChild(numberWrapper);
+  container.appendChild(numberWrapper);
   var arrowWrapper = document.createElement('div');
   arrowWrapper.id = 'arrowWrapper';
-  arg.appendChild(arrowWrapper);
+  container.appendChild(arrowWrapper);
   var digitalClock = document.createElement('div');
   digitalClock.id = 'digitalClock';
-  arg.appendChild(digitalClock);
+  container.appendChild(digitalClock);
 }
 
-function createNumbers(arg) {
-  for (var k = 1; k <= 12; k++ ) {
+function createNumbers(container) {
+  for (var k = 1; k <= 12; k++) {
     var number = document.createElement('div');
-    arg.appendChild(number);
+    container.appendChild(number);
     var degrees = (30 * k) / 180 * Math.PI;
     var x = (watchCircleCentrX - 25) + Math.round(Math.sin(degrees) * watchCircleCentrX / 1.2);
     var y = (watchCircleCentrY - 25) - Math.round(Math.cos(degrees) * watchCircleCentrY / 1.2);
     number.className = 'number';
     number.style.position = 'absolute';
-    number.style.top =  y + 'px';
+    number.style.top = y + 'px';
     number.style.left = x + 'px';
     number.innerText = k.toString();
   }
-  for (var q = 1; q <= 60; q++ ) {
+  for (var q = 1; q <= 60; q++) {
     var degreesDots = (deg * q) / 180 * Math.PI;
     var dots = document.createElement('div');
-    arg.appendChild(dots);
+    container.appendChild(dots);
     var dotsX = (watchCircleCentrX - 0.5) + Math.round(Math.sin(degreesDots) * watchCircleCentrX / 1.05);
     var dotsY = (watchCircleCentrY - 0.5) - Math.round(Math.cos(degreesDots) * watchCircleCentrY / 1.05);
     dots.className = 'dots';
@@ -74,7 +74,7 @@ function createCenterCircle(centerCircle) {
   littleCircle.style.left = (watchCircleCentrX - littleCircle.clientWidth / 2) + 'px';
 }
 
-function createTimeCifr(time) {
+function createTimeDigital(time) {
   var digitalTime = document.createElement('div');
   digitalTime.style.width = '150px';
   digitalTime.style.height = '50px';
@@ -124,14 +124,15 @@ function time() {
   var minutes = time.getMinutes();
   var hours = time.getHours();
   var secondsDegrees = ((seconds / 60) * 360);
-  var minutesDegrees = ((minutes /60) * 360) + ((seconds / 60) * deg);
+  var minutesDegrees = ((minutes / 60) * 360) + ((seconds / 60) * deg);
   var hoursDegrees = ((hours / 12) * 360) + ((minutes / 60) * 30);
   arrowSeconds.style.transform = 'rotate(' + secondsDegrees + 'deg)';
   ArrowMinutes.style.transform = 'rotate(' + minutesDegrees + 'deg)';
   arrowHours.style.transform = 'rotate(' + hoursDegrees + 'deg)';
   timeDigital.innerHTML = parseTime(hours) + ':' + parseTime(minutes) + ':' + parseTime(seconds);
+
   function parseTime(n) {
-    if(n < 10) {
+    if (n < 10) {
       n = '0' + n;
     }
     return n;
