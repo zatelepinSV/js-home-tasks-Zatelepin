@@ -138,7 +138,7 @@
     ball.update();
     score.update();
 
-//движения ракеток
+//реагируем на нажатие кнопок
     document.addEventListener('keydown', function (event) {
       switch (event.code) {
         case 'ShiftLeft':
@@ -172,7 +172,7 @@
           break;
       }
     });
-
+//не даём ракеткам вылететь за пределы игрового поля
     if (player1.position + player1.height + player1.moove <= field.height &&
       player1.position + player1.moove >= 0) {
       player1.position += player1.moove;
@@ -182,7 +182,7 @@
       player2.position += player2.moove;
     }
 
-    ball.posY += ball.speedY; //запуска мяча по Y
+    ball.posY += ball.speedY; //запуск мяча по Y
     ball.posX += ball.speedX; //запуск мяча по X
 
     if (ball.posY <= 0) {  //не даём вылететь мячу выше поля
@@ -231,12 +231,12 @@
       score.update();
     }
   }
-
+//тут генерируется скорость и направление мячика
   function random(min, max) {
     do {
       var number = Math.floor(Math.random() * (max + 1 - min)) + min;
     } while (number === 0);
-    allCentred() //отцентровываем ракетки и мячик
+    allCentred() //центрируем ракетки и мячик
     ball.update();
     return number;
   }
