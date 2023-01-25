@@ -5,7 +5,7 @@ function TAJAXStorage() {
   var pass;
   var storage = {};
 
-  this.storeStorage = () => {
+  function init () {
 
     $.ajax({
       url: link,
@@ -18,7 +18,7 @@ function TAJAXStorage() {
       success: dataLoaded,
       error: errorHandler,
     });
-  };
+  }
 
   this.addValue = function (key, value) {
     storage[key] = value;
@@ -44,7 +44,6 @@ function TAJAXStorage() {
   };
 
   function dataLoaded(data) {
-
     if (data !== '') {
       storage = JSON.parse(data.result);
     } else {
@@ -99,7 +98,7 @@ function TAJAXStorage() {
     });
   }
 
-  this.storeStorage();
+  init();
 }
 
 function insertData(data) {
