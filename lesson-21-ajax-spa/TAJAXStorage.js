@@ -15,8 +15,8 @@ function TAJAXStorage() {
         f: 'READ',
         n: 'DRINK'
       },
-      success: DataLoaded,
-      error: ErrorHandler,
+      success: dataLoaded,
+      error: errorHandler,
     });
   };
 
@@ -43,7 +43,7 @@ function TAJAXStorage() {
     return Object.keys(storage).includes(arg);
   };
 
-  function DataLoaded(data) {
+  function dataLoaded(data) {
 
     if (data !== '') {
       storage = JSON.parse(data.result);
@@ -57,8 +57,8 @@ function TAJAXStorage() {
           n: 'DRINK',
           v: JSON.stringify(storage),
         },
-        success: InsertData,
-        error: ErrorHandler,
+        success: insertData,
+        error: errorHandler,
       });
     }
   }
@@ -74,15 +74,13 @@ function TAJAXStorage() {
         p: pass,
       },
       cache: false,
-      success: Blocking,
-      error: ErrorHandler,
+      success: blocking,
+      error: errorHandler,
     });
 
-    function Blocking(data) {
+    function blocking(data) {
       if (data.error !== undefined) {
         console.log(data.error);
-        console.log('234234');
-        console.log(pass)
       }
     }
 
@@ -96,24 +94,24 @@ function TAJAXStorage() {
         p: pass,
       },
       cache: false,
-      success: DataUpdate,
-      error: ErrorHandler,
+      success: dataUpdate,
+      error: errorHandler,
     });
   }
 
   this.storeStorage();
 }
 
-function InsertData(data) {
+function insertData(data) {
   console.log(data.result);
 }
 
-function DataUpdate(data) {
+function dataUpdate(data) {
   if (data.error !== undefined) {
     console.log(data.error);
   }
 }
 
-function ErrorHandler(jqXHR, StatusStr, ErrorStr) {
+function errorHandler(jqXHR, StatusStr, ErrorStr) {
   console.log(StatusStr + ' ' + ErrorStr);
 }
