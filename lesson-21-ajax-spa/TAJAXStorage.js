@@ -2,10 +2,9 @@
 
 function TAJAXStorage() {
   var link = 'http://fe.it-academy.by/AjaxStringStorage2.php';
-  var pass;
   var storage = {};
 
-  function init () {
+  function init() {
 
     $.ajax({
       url: link,
@@ -22,7 +21,7 @@ function TAJAXStorage() {
 
   this.addValue = function (key, value) {
     storage[key] = value;
-    reloadData(storage);
+    update(storage);
 
   };
 
@@ -32,7 +31,7 @@ function TAJAXStorage() {
 
   this.deleteKey = function (key) {
     delete storage[key];
-    reloadData(storage);
+    update(storage);
   };
 
   this.getKeys = function () {
@@ -62,8 +61,8 @@ function TAJAXStorage() {
     }
   }
 
-  function reloadData(storage) {
-    pass = Math.random();
+  function update(storage) {
+    var pass = Math.random();
     $.ajax({
       url: link,
       type: 'POST',
@@ -76,12 +75,6 @@ function TAJAXStorage() {
       success: blocking,
       error: errorHandler,
     });
-
-    function blocking(data) {
-      if (data.error !== undefined) {
-        console.log(data.error);
-      }
-    }
 
     $.ajax({
       url: link,
@@ -99,6 +92,12 @@ function TAJAXStorage() {
   }
 
   init();
+}
+
+function blocking(data) {
+  if (data.error !== undefined) {
+    console.log(data.error);
+  }
 }
 
 function insertData(data) {
