@@ -12,7 +12,7 @@ function TAJAXStorage() {
       cache: false,
       data: {
         f: 'READ',
-        n: 'DRINK'
+        n: 'sergey',
       },
       success: dataLoaded,
       error: errorHandler,
@@ -52,7 +52,7 @@ function TAJAXStorage() {
         cache: false,
         data: {
           f: 'INSERT',
-          n: 'DRINK',
+          n: 'sergey',
           v: JSON.stringify(storage),
         },
         success: insertData,
@@ -68,11 +68,11 @@ function TAJAXStorage() {
       type: 'POST',
       data: {
         f: 'LOCKGET',
-        n: 'DRINK',
+        n: 'sergey',
         p: pass,
       },
       cache: false,
-      success: blocking,
+      success: onDataUpdateSuccess,
       error: errorHandler,
     });
 
@@ -81,7 +81,7 @@ function TAJAXStorage() {
       type: 'POST',
       data: {
         f: 'UPDATE',
-        n: 'DRINK',
+        n: 'sergey',
         v: JSON.stringify(storage),
         p: pass,
       },
@@ -94,7 +94,7 @@ function TAJAXStorage() {
   init();
 }
 
-function blocking(data) {
+function onDataUpdateSuccess(data) {
   if (data.error !== undefined) {
     console.log(data.error);
   }
