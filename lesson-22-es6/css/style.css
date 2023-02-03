@@ -69,3 +69,17 @@ li:hover {
      font-family: system-ui;
      font-size: 18px;
  }
+
+@media screen and (max-width: 600px) {
+    body {
+        font-size:1.5em;
+    }
+    #wrapper {
+        max-width: 100%;
+    }
+
+    li {
+        display: block;
+        transition: .3s;
+    }
+}
