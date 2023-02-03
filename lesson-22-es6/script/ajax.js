@@ -1,6 +1,6 @@
 'use strict';
 
-const link = 'http://fe.it-academy.by/AjaxStringStorage2.php';
+const link = 'https://fe.it-academy.by/AjaxStringStorage2.php';
 let wrapper = document.getElementById('wrapper');
 let dataArray;
 let houses = '';
@@ -59,7 +59,9 @@ function renderPage() {
       break;
     case 'pagesLists':
       page += `<h1>GOT</h1> 
-      <p id="lists">The Great Houses list</p>`;
+      <p id="lists"><b>Великие дома</b> (ориг. <i>Great House</i>) — самые могущественные и влиятельные из знатных домов в 
+      Семи Королевствах. Они представляют громадный авторитет и силу среди их вассалов и территорий, а подчиняются 
+      только королю на железном троне. </p>`;
       page += houses;
       break;
     case `${state.page}`:
