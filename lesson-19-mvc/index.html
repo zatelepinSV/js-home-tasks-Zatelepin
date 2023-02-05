@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Task</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <button id="btn1" class="shine-button">Добавить напиток</button>
+    <button id="btn2" class="shine-button">Показать все напитки</button>
+    <button id="btn3" class="shine-button">Состав напитка</button>
+    <button id="btn4" class="shine-button">Удалить напиток</button>
+    <div class="info"></div>
+    <script src="TLocalStorage.js"></script>
+    <script>
+      'use strict';
+
+      (function () {
+
+        var drinkStorage = new TLocalStorage(checkStorage());
+
+        function checkStorage() {
+          return prompt('Что будем хранить? ' + Object.keys(localStorage));
+        }
+
+        function infoDrink(drink, arg) {
+          return 'Напиток: ' + '<b>' + drink + '</b><br>' +
+            'Алкогольный: ' + '<b>' + arg.alcoholic + '</b><br>' +
+            'Состав: ' + '<b>' + arg.compound + '</b>';
+        }
+
+        document.getElementById('btn1').addEventListener('click', function () {
+          var name = prompt('Введите название');
+          var dataHash = {};
+          if (drinkStorage.check(name)) {
+            alert('Уже такой есть');
+          } else {
+            dataHash.alcoholic = prompt('Алкогольный?');
+            dataHash.compound = prompt('Что входит в состав?');
+            drinkStorage.addValue(name, dataHash);
+            alert(name + ' Успешно добавлен');
+          }
+        });
+        document.getElementById('btn2').addEventListener("click", function () {
+          document.querySelector('.info').innerHTML = 'Напитки: ' + '<b>' + drinkStorage.getKeys() + '</b>';
+        });
+        document.getElementById('btn3').addEventListener("click", function () {
+          var thisDrink = prompt('Конкретный напиток');
+          if (drinkStorage.check(thisDrink)) {
+            document.querySelector('.info').innerHTML = infoDrink(thisDrink, drinkStorage.getValue(thisDrink));
+          } else {
+            alert('такого нет');
+            document.querySelector('.info').innerHTML = 'Напитки: ' + '<b>' + drinkStorage.getKeys().toString() + '</b>';
+          }
+        });
+        document.getElementById('btn4').addEventListener("click", function () {
+          var dellKey = prompt('что удалить?');
+          if (drinkStorage.check(dellKey)) {
+            drinkStorage.deleteKey(dellKey);
+            alert('напиток ' + dellKey + ' успешно удалён!');
+          } else {
+            alert('такого напитка нет!!!');
+          }
+          document.querySelector('.info').innerHTML = 'Напитки: ' + '<b>' + drinkStorage.getKeys() + '</b>';
+        });
+
+      })();
+    </script>
+  </body>
+</html>
